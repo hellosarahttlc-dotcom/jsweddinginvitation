@@ -16,11 +16,12 @@
         :root {
             --primary-bg: #fdfaf5;    
             --card-bg: #ffffff;
-            --morandi-green: #8da399; 
-            --morandi-deep: #5b7065;  
+            --morandi-green: #6a7f76; 
+            --morandi-deep: #4a5c54;  
             --morandi-red: #a66e6e;   
             --text-main: #5a4a42;     
             --text-muted: #9e8e84;    
+            /* 蔣瑀：補回剛才失蹤的 Dress Code 顏色定義 */
             --code-pink: #eacccc;
             --code-green: #b4c5bc;
             --code-purple: #c5bfd1;
@@ -34,7 +35,6 @@
             color: var(--text-main);
         }
 
-        /* 統一使用 Cormorant Garamond 作為英文字體 (與 Saturday 同款) */
         .artsy-en { 
             font-family: 'Cormorant Garamond', serif !important; 
             font-weight: 300 !important; 
@@ -53,7 +53,6 @@
             border-bottom: 1px solid rgba(141, 163, 153, 0.1);
         }
 
-        /* 封面背景 */
         .hero-section {
             height: 100vh;
             background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
@@ -84,7 +83,7 @@
         .fade-in { opacity: 0; transform: translateY(20px); transition: all 1s ease-out; }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-        /* 計時器樣式 */
+        /* 計時器卡片樣式 */
         .countdown-card {
             background: #fff;
             width: 75px; height: 85px;
@@ -97,73 +96,46 @@
         .countdown-label { font-size: 0.6rem; letter-spacing: 0.15em; color: var(--text-muted); text-transform: uppercase; }
         .countdown-divider { width: 1px; height: 35px; background: var(--morandi-green); opacity: 0.2; }
 
-        /* 切換導覽背景聯動 */
-        .details-wrapper {
-            transition: background-color 0.6s ease;
-            padding: 5rem 0;
+        /* 垂直並陳卡片樣式 */
+        .details-section { padding: 4rem 0; background-color: var(--primary-bg); }
+        .v-card {
+            background: white; border-radius: 24px; box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+            margin-bottom: 4rem; overflow: hidden; border: 1px solid rgba(141, 163, 153, 0.1);
         }
-        .details-wrapper.ceremony-active { background-color: rgba(141, 163, 153, 0.06); }
-        .details-wrapper.banquet-active { background-color: rgba(166, 110, 110, 0.06); }
+        .v-card-header { padding: 2.5rem 2rem; text-align: center; color: white; }
+        .v-card-header.church { background-color: var(--morandi-green); }
+        .v-card-header.banquet { background-color: var(--morandi-red); }
+        .v-card-header h3 { color: white !important; letter-spacing: 0.3em; font-weight: 700; }
+        .v-card-header p { color: rgba(255,255,255,0.85) !important; font-size: 0.8rem; margin-top: 5px; letter-spacing: 0.1em; }
 
-        .tab-switcher {
-            display: inline-flex;
-            background: rgba(0,0,0,0.05);
-            padding: 5px;
-            border-radius: 100px;
-            margin-bottom: 3rem;
-            position: relative;
+        .v-card-body { padding: 2rem; }
+        
+        .transport-collapse {
+            max-height: 0; overflow: hidden; transition: max-height 0.6s cubic-bezier(0, 1, 0, 1);
+            background: #fcfcfc; border-radius: 12px;
         }
-        .tab-btn {
-            padding: 10px 45px;
-            border-radius: 100px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            font-weight: 600;
-            z-index: 2;
-            color: #9e8e84;
-            letter-spacing: 0.1em;
+        .transport-collapse.open {
+            max-height: 1000px; transition: max-height 1s ease-in-out;
+            margin-top: 1.5rem; padding: 1.2rem; border: 1px solid #f0f0f0;
         }
-        .tab-btn.active { color: white !important; }
-        .tab-bg-slider {
-            position: absolute;
-            top: 5px; left: 5px;
-            height: calc(100% - 10px);
-            width: calc(50% - 5px);
-            border-radius: 100px;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 1;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        .ceremony-active .tab-bg-slider { background-color: var(--morandi-green); transform: translateX(0); }
-        .banquet-active .tab-bg-slider { background-color: var(--morandi-red); transform: translateX(100%); }
 
-        .content-panel { display: none; animation: slideUp 0.6s ease-out forwards; }
-        .content-panel.active { display: block; }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-        .info-card {
-            background: white; border-radius: 16px;
-            box-shadow: 0 15px 45px rgba(0,0,0,0.04);
-            border-top-width: 8px;
-        }
-        .ceremony-active .info-card { border-top-color: var(--morandi-green); }
-        .banquet-active .info-card { border-top-color: var(--morandi-red); }
-
-        /* 交通清單緊湊化 */
-        .transport-item { padding: 12px 0; border-bottom: 1px solid #f5f5f5; }
+        .transport-item { padding: 10px 0; border-bottom: 1px solid #f5f5f5; }
         .transport-item:last-child { border-bottom: none; }
-        .transport-item h4 { margin-bottom: 0px; font-size: 0.95rem; font-weight: 700; }
-        .transport-item p { line-height: 1.4; margin-top: 2px; font-size: 0.85rem; color: #7a7a7a; }
+        .transport-item h4 { margin-bottom: 2px; font-size: 0.9rem; font-weight: 700; color: #555; }
+        .transport-item p { line-height: 1.4; margin-top: 1px; font-size: 0.85rem; color: #7a7a7a; }
 
-        .bus-list {
-            max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
-            font-size: 0.75rem; color: #9e8e84; line-height: 1.3; margin-top: 4px;
+        .toggle-btn {
+            display: flex; align-items: center; justify-content: center; width: 100%;
+            padding: 12px; margin-top: 1rem; border-radius: 50px; font-size: 0.9rem;
+            font-weight: 600; letter-spacing: 0.1em; cursor: pointer; transition: all 0.3s;
         }
-        .bus-list.open { max-height: 400px; }
-        .bus-toggle-btn { color: var(--morandi-green); font-size: 0.7rem; cursor: pointer; border-bottom: 1px dashed; }
+        .toggle-btn.church { color: var(--morandi-green); background: rgba(106, 127, 118, 0.1); border: 1px solid rgba(106, 127, 118, 0.2); }
+        .toggle-btn.banquet { color: var(--morandi-red); background: rgba(166, 110, 110, 0.1); border: 1px solid rgba(166, 110, 110, 0.2); }
+        .toggle-btn:hover { transform: translateY(-2px); opacity: 0.8; }
 
-        /* 表單 */
+        .bus-list { font-size: 0.75rem; color: #9e8e84; line-height: 1.4; margin-top: 5px; }
+
+        /* 表單樣式 */
         .rsvp-form-container {
             max-width: 650px; margin: 0 auto; background: #fff; padding: 40px; border-radius: 12px;
             box-shadow: 0 10px 60px rgba(0,0,0,0.04); text-align: left;
@@ -180,16 +152,16 @@
         }
         .radio-grid { display: grid; grid-template-cols: 1fr 1fr; gap: 12px; margin-top: 8px; }
         .radio-card { border: 1px solid #e5e7eb; padding: 12px; border-radius: 8px; display: flex; align-items: center; cursor: pointer; transition: all 0.2s; }
-        .submit-btn { width: 100%; background-color: var(--morandi-green); color: white !important; padding: 1.2rem; border-radius: 50px; font-weight: 600; letter-spacing: 0.2em; box-shadow: 0 10px 25px rgba(141, 163, 153, 0.2); }
+        .submit-btn { width: 100%; background-color: var(--morandi-green); color: white !important; padding: 1.2rem; border-radius: 50px; font-weight: 600; letter-spacing: 0.2em; box-shadow: 0 10px 25px rgba(106, 127, 118, 0.2); }
 
         @media (max-width: 768px) {
             .hero-section h1 { font-size: 4rem !important; }
             .hero-ampersand { font-size: 2.2rem !important; }
             .countdown-card { width: 65px; height: 75px; }
             .countdown-num { font-size: 1.6rem; }
-            .tab-btn { padding: 10px 20px; font-size: 0.9rem; flex: 1; text-align: center; }
-            .tab-switcher { width: 90%; }
-            .info-block { padding: 1.5rem !important; }
+            .v-card { margin-left: 15px; margin-right: 15px; }
+            .v-card-body { padding: 1.5rem; }
+            .rsvp-form-container { padding: 30px 20px; }
         }
     </style>
 </head>
@@ -197,30 +169,25 @@
 
     <!-- 導覽列 -->
     <nav class="fixed top-0 w-full z-50 py-3 px-6 md:px-12 flex justify-between items-center">
-        <div class="artsy-en text-2xl font-bold tracking-tight text-[#8da399]">Johnny & Sarah</div>
+        <div class="artsy-en text-2xl font-bold tracking-tight text-[#6a7f76]">Johnny & Sarah</div>
         <div class="hidden md:flex space-x-10 text-sm tracking-widest font-medium opacity-80">
-            <a href="#about" class="hover:text-[#8da399] transition">關於我們</a>
-            <a href="#details" class="hover:text-[#8da399] transition">婚禮詳情</a>
-            <a href="#dresscode" class="hover:text-[#8da399] transition">服裝色彩</a>
-            <a href="#rsvp" class="hover:text-[#8da399] transition">出席回函</a>
+            <a href="#about" class="hover:text-[#6a7f76] transition">關於我們</a>
+            <a href="#details" class="hover:text-[#6a7f76] transition">婚禮詳情</a>
+            <a href="#dresscode" class="hover:text-[#6a7f76] transition">服裝色彩</a>
+            <a href="#rsvp" class="hover:text-[#6a7f76] transition">出席回函</a>
         </div>
-        <a href="#rsvp" class="md:hidden text-[#8da399] text-lg"><i class="fa-solid fa-envelope"></i></a>
+        <a href="#rsvp" class="md:hidden text-[#6a7f76] text-lg"><i class="fa-solid fa-envelope"></i></a>
     </nav>
 
-    <!-- 封面：文字並排 + 字體統一 (Cormorant Garamond) -->
+    <!-- 封面 -->
     <header class="hero-section">
         <div class="text-white text-center fade-in hero-text-box" id="hero-text">
-            <!-- 日期：與 SATURDAY 同款字體 & 純白色 -->
             <p class="artsy-en text-sm md:text-base mb-10 md:mb-16 tracking-[0.6em] font-light">2026.06.06 SATURDAY</p>
-            
-            <!-- 名字：水平並排 & 極細文青感 (與 Saturday 同款) -->
             <div class="flex items-center justify-center space-x-4 md:space-x-8 mb-12 px-4">
                 <h1 class="artsy-en text-6xl md:text-9xl">Johnny</h1>
                 <span class="artsy-en text-4xl md:text-7xl italic opacity-80 hero-ampersand">&</span>
                 <h1 class="artsy-en text-6xl md:text-9xl">Sarah</h1>
             </div>
-
-            <!-- 文案：我們要結婚了 & 純白色 -->
             <p class="text-sm md:text-base tracking-[0.8em] font-light">我們要結婚了</p>
         </div>
         <div class="absolute bottom-10 md:bottom-16 animate-bounce text-white opacity-40">
@@ -230,7 +197,7 @@
 
     <section id="about" class="py-16 md:py-32 px-6 text-center">
         <div class="max-w-4xl mx-auto fade-in">
-            <p class="artsy-en italic text-base md:text-lg text-[#8da399] mb-6 md:mb-8 tracking-widest uppercase">Eternal Promise</p>
+            <p class="artsy-en italic text-base md:text-lg text-[#6a7f76] mb-6 md:mb-8 tracking-widest uppercase">Eternal Promise</p>
             <h2 class="text-2xl md:text-4xl font-medium tracking-[0.15em] section-title mobile-break">你把我對愛情的想像<br class="md:hidden">變成日常</h2>
             <p class="serif-en italic text-lg md:text-xl text-[#9e8e84] font-light mb-12 leading-relaxed">You turn my imagination of love<br class="md:hidden"> into our beautiful everyday life.</p>
             
@@ -245,71 +212,67 @@
                 <div class="countdown-card"><span id="seconds" class="artsy-en countdown-num">00</span><span class="countdown-label text-[8px]">Secs</span></div>
             </div>
             
-            <p class="mt-10 mb-16 text-lg md:text-xl tracking-[0.3em] font-bold text-[#8da399]">2026年06月06日</p>
+            <p class="mt-10 mb-16 text-lg md:text-xl tracking-[0.3em] font-bold text-[#6a7f76]">2026年06月06日 星期六</p>
             <div class="flex justify-center items-center space-x-4 opacity-20"><span class="w-12 h-px bg-stone-800"></span><i class="fa-solid fa-heart text-[8px]"></i><span class="w-12 h-px bg-stone-800"></span></div>
         </div>
     </section>
 
-    <!-- 婚禮詳情：修復桌面排版跑掉問題 -->
-    <section id="details" class="details-wrapper ceremony-active">
-        <div class="max-w-6xl mx-auto text-center px-6">
-            <h2 class="text-2xl md:text-3xl font-medium tracking-[0.3em] section-title serif-en uppercase mb-8">Wedding Details</h2>
-            
-            <div class="tab-switcher">
-                <div class="tab-bg-slider"></div>
-                <div id="btnC" class="tab-btn active" onclick="switchUI('c')">教堂婚禮</div>
-                <div id="btnB" class="tab-btn" onclick="switchUI('b')">午宴</div>
-            </div>
+    <!-- 婚禮詳情 -->
+    <section id="details" class="details-section">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="text-2xl md:text-3xl font-medium tracking-[0.3em] text-center serif-en uppercase mb-16">Wedding Details</h2>
 
-            <!-- 教堂婚禮 -->
-            <div id="panelC" class="content-panel active">
-                <div class="grid md:grid-cols-2 gap-10 md:gap-16 text-left items-start">
-                    <!-- 左側：資訊卡 -->
-                    <div class="info-card p-8 md:p-12 w-full">
-                        <h3 class="text-xl font-bold mb-6 text-[#5b7065] tracking-widest">教堂婚禮</h3>
-                        <div class="space-y-8">
-                            <div><p class="text-[10px] text-[#9e8e84] mb-1 tracking-widest uppercase">Time</p><p class="text-lg font-bold">09:30 入場 | 10:00 開始</p></div>
-                            <div><p class="text-[10px] text-[#9e8e84] mb-1 tracking-widest uppercase">Location</p><p class="text-lg">台北真理堂 2樓大會堂</p><p class="text-xs text-[#9e8e84] italic mt-1 leading-relaxed">台北市大安區新生南路三段86號</p></div>
-                        </div>
+            <!-- 教堂婚禮卡片 -->
+            <div class="v-card fade-in">
+                <div class="v-card-header church">
+                    <h3 class="text-2xl">教堂婚禮</h3>
+                    <p class="artsy-en">CHURCH CEREMONY</p>
+                </div>
+                <div class="v-card-body">
+                    <div class="grid md:grid-cols-2 gap-8 mb-4">
+                        <div><p class="text-[10px] text-[#9e8e84] mb-1 tracking-widest uppercase">Time</p><p class="text-xl font-bold">09:30 入場 | 10:00 開始</p></div>
+                        <div><p class="text-[10px] text-[#9e8e84] mb-1 tracking-widest uppercase">Location</p><p class="text-lg">台北真理堂 2樓大會堂</p><p class="text-xs text-[#9e8e84] italic mt-1 leading-relaxed">台北市大安區新生南路三段86號</p></div>
                     </div>
-                    <!-- 右側：交通指引 -->
-                    <div class="w-full">
-                        <h3 class="text-xl font-bold mb-4 text-[#5b7065] tracking-widest px-2">交通指引</h3>
-                        <div class="px-2">
-                            <div class="transport-item"><h4 class="font-bold text-stone-700">捷運</h4><p>「公館站」3號出口 (約5-8分鐘)<br>「台電大樓站」2號出口 (約10分鐘)</p></div>
-                            <div class="transport-item"><h4 class="font-bold text-stone-700">公車</h4><p>搭乘至「台大站」或「新生南路路口」</p><span class="bus-toggle-btn" onclick="toggleBus('busChurch')">展開所有線路 +</span><div id="busChurch" class="bus-list">0南, 109, 207, 208, 236, 251, 252, 253, 280, 284, 290, 311, 505, 52, 642, 643, 644, 648, 660, 671, 672, 673, 675, 676, 74, 907, 綠11, 綠13, 棕11, 棕12</div></div>
-                            <div class="transport-item"><h4 class="font-bold text-stone-700">停車建議</h4><p class="text-rose-400 font-semibold italic text-[11px] mb-1">※ 教會內部無提供停車位</p><p class="text-[11px]">建議利用「台大新體育館停車場」或校內空間。</p></div>
-                        </div>
+                    
+                    <div id="btnChurchTransport" class="toggle-btn church" onclick="toggleSection('churchTransport')">
+                        <i class="fa-solid fa-map-location-dot mr-2"></i> 查看教堂交通指引
+                    </div>
+
+                    <div id="churchTransport" class="transport-collapse">
+                        <div class="transport-item"><h4 class="font-bold text-stone-700">捷運</h4><p>「公館站」3號出口 (約5-8分鐘) / 「台電大樓站」2號出口 (約10分鐘)</p></div>
+                        <div class="transport-item"><h4 class="font-bold text-stone-700">公車</h4><p>搭乘至「台大站」或「新生南路路口」<br><span class="bus-list">路線：0南, 109, 207, 208, 236, 251, 252, 253, 280, 284, 290, 311, 505, 52, 642, 643, 644, 648, 660, 671, 672, 673, 675, 676, 74, 907, 綠11, 綠13, 棕11, 棕12</span></p></div>
+                        <div class="transport-item"><h4 class="font-bold text-stone-700">停車建議</h4><p class="text-rose-400 font-semibold italic text-[11px] mb-1">※ 教會內部無提供停車位</p><p class="text-[11px]">建議利用「台大新體育館停車場」或校內空間。</p></div>
                     </div>
                 </div>
             </div>
 
-            <!-- 午宴 -->
-            <div id="panelB" class="content-panel">
-                <div class="grid md:grid-cols-2 gap-10 md:gap-16 text-left items-start">
-                    <!-- 左側：資訊卡 -->
-                    <div class="info-card p-8 md:p-12 w-full">
-                        <h3 class="text-xl font-bold mb-6 text-[#a66e6e] tracking-widest">午宴</h3>
-                        <div class="space-y-8">
-                            <div><p class="text-[10px] text-[#9e8e84] mb-1 tracking-widest uppercase">Time</p><p class="text-lg font-bold text-[#a66e6e]">12:00 入席 | 12:30 開席</p></div>
-                            <div><p class="text-[10px] text-[#9e8e84] mb-1 tracking-widest uppercase">Location</p><p class="text-lg">新店彭園會館 BC廳</p><p class="text-xs text-[#9e8e84] italic mt-1 leading-relaxed">新北市新店區北新路三段207之1號1樓 (矽谷大樓)</p></div>
-                        </div>
+            <!-- 午宴卡片 -->
+            <div class="v-card fade-in">
+                <div class="v-card-header banquet">
+                    <h3 class="text-2xl">午宴</h3>
+                    <p class="artsy-en">WEDDING BANQUET</p>
+                </div>
+                <div class="v-card-body">
+                    <div class="grid md:grid-cols-2 gap-8 mb-4">
+                        <div><p class="text-[10px] text-[#9e8e84] mb-1 tracking-widest uppercase text-[#a66e6e]">Time</p><p class="text-xl font-bold text-[#a66e6e]">12:00 入席 | 12:30 開席</p></div>
+                        <div><p class="text-[10px] text-[#9e8e84] mb-1 tracking-widest uppercase">Location</p><p class="text-lg">新店彭園會館 BC廳</p><p class="text-xs text-[#9e8e84] italic mt-1 leading-relaxed">新北市新店區北新路三段207之1號1樓 (矽谷大樓)</p></div>
                     </div>
-                    <!-- 右側：交通指引 -->
-                    <div class="w-full">
-                        <h3 class="text-xl font-bold mb-4 text-[#a66e6e] tracking-widest px-2">交通指引</h3>
-                        <div class="px-2">
-                            <div class="transport-item"><h4 class="font-bold text-[#a66e6e]">捷運</h4><p>「大坪林站」3號或4號出口 (約3-5分鐘)</p></div>
-                            <div class="transport-item"><h4 class="font-bold text-[#a66e6e]">公車</h4><span class="bus-toggle-btn" style="color:var(--morandi-red);" onclick="toggleBus('busBanquet')">展開所有線路 +</span><div id="busBanquet" class="bus-list"><span class="font-bold block text-stone-600">大坪林站：</span>綠7-10, 綠13, 15, 棕2, 252, 290, 642-648, 849, 1551, 9009等。<br><span class="font-bold block mt-1 text-stone-600">民權路口：</span>綠3, 綠8-10, 綠13, 15, 90, 918, 1073, 1080等。</div></div>
-                            <div class="transport-item"><h4 class="font-bold text-[#a66e6e]">停車入口</h4><p class="text-[11px]"><span class="font-bold text-stone-600">汽車：</span>北新路三段 211 巷 (矽谷一期 B3)<br><span class="font-bold text-stone-600">機車：</span>北新路三段 203 巷 (矽谷一期 B2)<br>※ 餐廳提供停車位，依現場公告為準</p></div>
-                        </div>
+
+                    <div id="btnBanquetTransport" class="toggle-btn banquet" onclick="toggleSection('banquetTransport')">
+                        <i class="fa-solid fa-car mr-2"></i> 查看午宴交通指引
+                    </div>
+
+                    <div id="banquetTransport" class="transport-collapse">
+                        <div class="transport-item"><h4 class="font-bold text-[#a66e6e]">捷運</h4><p>「大坪林站」3號或4號出口 (步程約 3-5 分鐘)</p></div>
+                        <div class="transport-item"><h4 class="font-bold text-[#a66e6e]">公車</h4><p><span class="bus-list"><strong class="text-stone-600">大坪林站：</strong>綠7-10, 綠13, 15, 棕2, 252, 290, 642-648, 849, 1551, 9009等。<br><strong class="text-stone-600">民權路口：</strong>綠3, 綠8-10, 綠13, 15, 90, 918, 1073, 1080等。</span></p></div>
+                        <div class="transport-item"><h4 class="font-bold text-[#a66e6e]">停車入口</h4><p class="text-[11px]"><span class="font-bold text-stone-600">汽車：</span>北新路三段 211 巷 (矽谷一期 B3)<br><span class="font-bold text-stone-600">機車：</span>北新路三段 203 巷 (矽谷一期 B2)<br>※ 餐廳提供停車位，依現場公告為準</p></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Dress Code -->
+    <!-- Dress Code: 修正顏色顯示 -->
     <section id="dresscode" class="py-16 md:py-32 px-6 bg-white text-center">
         <div class="max-w-4xl mx-auto fade-in">
             <h2 class="text-2xl md:text-3xl font-medium tracking-[0.3em] section-title serif-en uppercase mb-12">Dress Code</h2>
@@ -326,7 +289,7 @@
         </div>
     </section>
 
-    <!-- RSVP 表單：正確 Entry ID 保留 -->
+    <!-- RSVP 表單 -->
     <section id="rsvp" class="py-16 md:py-32 px-6 bg-[#fcf9f6] text-center">
         <div class="max-w-4xl mx-auto fade-in">
             <p class="text-[#8c7355] mb-12 font-bold text-lg md:text-xl mobile-break leading-loose">在最重要的日子，<br class="md:hidden">期待有你一起見證我們的約定</p>
@@ -353,7 +316,7 @@
     </section>
 
     <footer class="py-12 md:py-24 bg-white text-center bg-opacity-60 border-t border-stone-100">
-        <div class="artsy-en text-2xl font-bold text-[#5b7065] mb-2">Johnny & Sarah</div>
+        <div class="artsy-en text-2xl font-bold text-[#6a7f76] mb-2">Johnny & Sarah</div>
         <p class="serif-en text-[10px] text-[#9e8e84] tracking-[0.4em]">2026.06.06 | TAIPEI CEREMONY & BANQUET</p>
     </footer>
 
@@ -367,29 +330,14 @@
             }
         }
 
-        function switchUI(mode) {
-            const btnC = document.getElementById('btnC');
-            const btnB = document.getElementById('btnB');
-            const panelC = document.getElementById('panelC');
-            const panelB = document.getElementById('panelB');
-            const wrapper = document.getElementById('details');
-
-            if (mode === 'c') {
-                btnC.classList.add('active'); btnB.classList.remove('active');
-                panelC.classList.add('active'); panelB.classList.remove('active');
-                wrapper.classList.add('ceremony-active'); wrapper.classList.remove('banquet-active');
-            } else {
-                btnB.classList.add('active'); btnC.classList.remove('active');
-                panelB.classList.add('active'); panelC.classList.remove('active');
-                wrapper.classList.add('banquet-active'); wrapper.classList.remove('ceremony-active');
-            }
-        }
-
-        function toggleBus(id) {
-            const list = document.getElementById(id);
+        function toggleSection(id) {
+            const el = document.getElementById(id);
             const btn = event.currentTarget;
-            list.classList.toggle('open');
-            btn.innerText = list.classList.contains('open') ? '收合路線列表 -' : '展開所有線路 +';
+            const isOpen = el.classList.contains('open');
+            el.classList.toggle('open');
+            btn.innerHTML = isOpen ? 
+                (id.includes('Church') ? '<i class="fa-solid fa-map-location-dot mr-2"></i> 查看教堂交通指引' : '<i class="fa-solid fa-car mr-2"></i> 查看午宴交通指引') :
+                '<i class="fa-solid fa-chevron-up mr-2"></i> 收合交通資訊';
         }
 
         function updateCountdown() {
