@@ -52,20 +52,27 @@
             border-bottom: 1px solid rgba(107, 126, 117, 0.2);
         }
 
-        /* Hero Section 優化 */
+        /* Hero Section 核心優化 */
         .hero-section {
             height: 100vh;
-            /* 調整線性遮罩透明度 (0.4) 以確保文字在亮色照片上更清晰 */
-            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+            /* 稍微調暗背景（0.45）讓白色文字更顯眼 */
+            background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.3)), 
                         url('https://i.postimg.cc/52tt87LB/A251030-33.jpg'); 
             background-size: cover;
-            /* 針對這張照片調整位置，確保手機版能看到人物的臉部 (25%) */
-            background-position: center 25%; 
+            /* center center 是最保險的，針對這張橫向照在手機上的呈現做調整 */
+            background-position: center center; 
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             position: relative;
+        }
+
+        /* 針對手機螢幕比例，微調背景圖焦點，確保兩人在畫面中 */
+        @media (max-width: 768px) {
+            .hero-section {
+                background-position: 45% center; 
+            }
         }
 
         .hero-section::after {
@@ -75,10 +82,11 @@
             background: linear-gradient(transparent, var(--primary-bg));
         }
 
+        /* 讓照片上的文字更明顯的關鍵設定 */
         .hero-text-box h1, .hero-text-box p, .hero-text-box span {
             color: #ffffff !important;
-            /* 加強文字陰影對比度 */
-            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
+            /* 強大的複合陰影，確保在任何背景顏色下都清晰 */
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 0, 0, 0.4);
             opacity: 1 !important;
         }
 
@@ -97,7 +105,6 @@
         .countdown-label { font-size: 0.6rem; letter-spacing: 0.15em; color: var(--text-muted); text-transform: uppercase; }
         .countdown-divider { width: 1px; height: 35px; background: var(--morandi-green); opacity: 0.3; }
 
-        .details-section { padding: 4rem 0; background-color: var(--primary-bg); }
         .v-card {
             background: white; border-radius: 24px; box-shadow: 0 10px 40px rgba(0,0,0,0.05);
             margin-bottom: 4rem; overflow: hidden; border: 1px solid rgba(107, 126, 117, 0.15);
@@ -106,10 +113,7 @@
         .v-card-header.church { background-color: var(--morandi-green); }
         .v-card-header.banquet { background-color: var(--morandi-banquet); }
         .v-card-header h3 { color: white !important; letter-spacing: 0.3em; font-weight: 700; }
-        .v-card-header p { color: rgba(255,255,255,0.9) !important; font-size: 0.8rem; margin-top: 5px; letter-spacing: 0.1em; }
 
-        .v-card-body { padding: 2rem; }
-        
         .transport-collapse {
             max-height: 0; overflow: hidden; transition: max-height 0.6s cubic-bezier(0, 1, 0, 1);
             background: #f9f9f9; border-radius: 12px;
@@ -119,60 +123,23 @@
             margin-top: 1.5rem; padding: 1.2rem; border: 1px solid #eee;
         }
 
-        .transport-item { padding: 10px 0; border-bottom: 1px solid #f0f0f0; }
-        .transport-item:last-child { border-bottom: none; }
-        .transport-item h4 { margin-bottom: 2px; font-size: 0.9rem; font-weight: 700; color: #444; }
-        .transport-item p { line-height: 1.4; margin-top: 1px; font-size: 0.85rem; color: #666; }
-
-        .toggle-btn {
-            display: flex; align-items: center; justify-content: center; width: 100%;
-            padding: 12px; margin-top: 1rem; border-radius: 50px; font-size: 0.9rem;
-            font-weight: 600; letter-spacing: 0.1em; cursor: pointer; transition: all 0.3s;
-        }
-        .toggle-btn.church { color: var(--morandi-green); background: rgba(107, 126, 117, 0.1); border: 1px solid rgba(107, 126, 117, 0.2); }
-        .toggle-btn.banquet { color: var(--morandi-banquet); background: rgba(141, 160, 144, 0.1); border: 1px solid rgba(141, 160, 144, 0.2); }
-        .toggle-btn:hover { transform: translateY(-2px); opacity: 0.9; }
-
-        .bus-list { font-size: 0.75rem; color: #8a7a70; line-height: 1.4; margin-top: 5px; }
-
         .rsvp-form-container {
             max-width: 650px; margin: 0 auto; background: #fff; padding: 40px; border-radius: 12px;
             box-shadow: 0 10px 60px rgba(0,0,0,0.06); text-align: left;
         }
-        .form-group { margin-bottom: 24px; }
-        .form-label { display: block; font-size: 0.85rem; margin-bottom: 6px; color: var(--morandi-deep); font-weight: 600; letter-spacing: 0.1em; }
-        .form-input, .form-select {
-            width: 100%; padding: 12px 16px; border: 1px solid #ddd; border-radius: 8px;
-            background: #fafafa; transition: all 0.3s; font-size: 0.95rem; appearance: none;
-        }
-        .form-select {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7e75'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
-            background-repeat: no-repeat; background-position: right 16px center; background-size: 14px;
-        }
-        .radio-grid { display: grid; grid-template-cols: 1fr 1fr; gap: 12px; margin-top: 8px; }
-        .radio-card { border: 1px solid #ddd; padding: 12px; border-radius: 8px; display: flex; align-items: center; cursor: pointer; transition: all 0.2s; }
-        .submit-btn { width: 100%; background-color: var(--morandi-green); color: white !important; padding: 1.2rem; border-radius: 50px; font-weight: 600; letter-spacing: 0.2em; box-shadow: 0 10px 25px rgba(107, 126, 117, 0.3); }
 
         #banquet-only-fields {
-            max-height: 0;
-            overflow: hidden;
-            transition: all 0.5s ease-in-out;
-            opacity: 0;
+            max-height: 0; opacity: 0; overflow: hidden; transition: all 0.5s ease-in-out;
         }
         #banquet-only-fields.visible {
-            max-height: 500px;
-            opacity: 1;
-            margin-top: 20px;
+            max-height: 500px; opacity: 1; margin-top: 20px;
         }
 
         @media (max-width: 768px) {
-            .hero-section h1 { font-size: 4rem !important; }
-            .hero-ampersand { font-size: 2.2rem !important; }
+            .hero-section h1 { font-size: 3.5rem !important; } /* 手機版名字稍微縮小避免重疊 */
+            .hero-ampersand { font-size: 1.8rem !important; margin: 0 10px; }
             .countdown-card { width: 65px; height: 75px; }
             .countdown-num { font-size: 1.6rem; }
-            .v-card { margin-left: 15px; margin-right: 15px; }
-            .v-card-body { padding: 1.5rem; }
-            .rsvp-form-container { padding: 30px 20px; }
         }
     </style>
 </head>
@@ -190,18 +157,18 @@
         <a href="#rsvp" class="md:hidden text-[#6b7e75] text-lg"><i class="fa-solid fa-envelope"></i></a>
     </nav>
 
-    <!-- 封面 (已更換主圖並優化手機裁切) -->
+    <!-- 封面 -->
     <header class="hero-section">
         <div class="text-white text-center fade-in hero-text-box" id="hero-text">
-            <p class="artsy-en text-sm md:text-base mb-10 md:mb-16 tracking-[0.6em] font-light">2026.06.06 SATURDAY</p>
-            <div class="flex items-center justify-center space-x-4 md:space-x-8 mb-12 px-4">
+            <p class="artsy-en text-sm md:text-base mb-8 md:mb-16 tracking-[0.6em] font-light">2026.06.06 SATURDAY</p>
+            <div class="flex items-center justify-center mb-10 md:mb-12 px-4">
                 <h1 class="artsy-en text-6xl md:text-9xl">Johnny</h1>
-                <span class="artsy-en text-4xl md:text-7xl italic opacity-80 hero-ampersand">&</span>
+                <span class="artsy-en text-3xl md:text-6xl italic opacity-90 hero-ampersand">&</span>
                 <h1 class="artsy-en text-6xl md:text-9xl">Sarah</h1>
             </div>
             <p class="text-sm md:text-base tracking-[0.6em] font-medium px-4">蘇郁翔和蔣瑀要結婚了</p>
         </div>
-        <div class="absolute bottom-10 md:bottom-16 animate-bounce text-white opacity-40">
+        <div class="absolute bottom-10 md:bottom-16 animate-bounce text-white opacity-60">
             <a href="#about"><i class="fa-solid fa-chevron-down text-xl"></i></a>
         </div>
     </header>
@@ -210,8 +177,8 @@
     <section id="about" class="py-16 md:py-32 px-6 text-center">
         <div class="max-w-4xl mx-auto fade-in">
             <p class="artsy-en italic text-base md:text-lg text-[#6b7e75] mb-6 md:mb-8 tracking-widest uppercase font-medium">Eternal Promise</p>
-            <h2 class="text-2xl md:text-4xl font-bold tracking-[0.15em] section-title">你把我對愛情的想像<br class="md:hidden">變成日常</h2>
-            <p class="serif-en italic text-lg md:text-xl text-[#8a7a70] font-light mb-12 leading-relaxed">You turn my imagination of love<br class="md:hidden"> into our beautiful everyday life.</p>
+            <h2 class="text-2xl md:text-4xl font-bold tracking-[0.15em] section-title leading-snug">你把我對愛情的想像<br class="md:hidden">變成日常</h2>
+            <p class="serif-en italic text-lg md:text-xl text-[#8a7a70] font-light mb-12 leading-relaxed">You turn my imagination of love into our beautiful everyday life.</p>
             
             <div id="countdown" class="flex justify-center items-center space-x-2 md:space-x-4 mb-8">
                 <div class="countdown-card"><span id="days" class="artsy-en countdown-num">00</span><span class="countdown-label text-[8px]">Days</span></div>
@@ -229,7 +196,7 @@
     </section>
 
     <!-- 婚禮詳情 -->
-    <section id="details" class="details-section">
+    <section id="details" class="py-16 bg-[#f5efe6]">
         <div class="max-w-4xl mx-auto px-4">
             <h2 class="text-2xl md:text-3xl font-bold tracking-[0.3em] text-center serif-en uppercase mb-16">Wedding Details</h2>
 
@@ -239,20 +206,19 @@
                     <h3 class="text-2xl">教堂婚禮</h3>
                     <p class="artsy-en">CHURCH CEREMONY</p>
                 </div>
-                <div class="v-card-body">
+                <div class="v-card-body p-8">
                     <div class="grid md:grid-cols-2 gap-8 mb-4">
                         <div><p class="text-[10px] text-[#8a7a70] mb-1 tracking-widest uppercase">Time</p><p class="text-xl font-bold">09:30 入場 | 10:00 開始</p></div>
                         <div><p class="text-[10px] text-[#8a7a70] mb-1 tracking-widest uppercase">Location</p><p class="text-lg font-bold">台北真理堂 2樓大會堂</p><p class="text-xs text-[#8a7a70] italic mt-1 leading-relaxed font-medium">台北市大安區新生南路三段86號</p></div>
                     </div>
-                    
-                    <div id="btnChurchTransport" class="toggle-btn church" onclick="toggleSection('churchTransport')">
+                    <div id="btnChurchTransport" class="toggle-btn bg-[#6b7e75]/10 text-[#6b7e75] p-3 rounded-full text-center mt-4 cursor-pointer" onclick="toggleSection('churchTransport')">
                         <i class="fa-solid fa-map-location-dot mr-2"></i> 查看教堂交通指引
                     </div>
-
                     <div id="churchTransport" class="transport-collapse">
-                        <div class="transport-item"><h4 class="font-bold text-stone-700">捷運</h4><p>「公館站」3號出口 (約5-8分鐘)<br>「台電大樓站」2號出口 (約10分鐘)</p></div>
-                        <div class="transport-item"><h4 class="font-bold text-stone-700">公車</h4><p>搭乘至「台大站」或「新生南路路口」<br><span class="bus-list">路線：0南, 109, 207, 208, 236, 251, 252, 253, 280, 284, 290, 311, 505, 52, 642, 643, 644, 648, 660, 671, 672, 673, 675, 676, 74, 907, 綠11, 綠13, 棕11, 棕12</span></p></div>
-                        <div class="transport-item"><h4 class="font-bold text-stone-700">停車建議</h4><p class="text-rose-600 font-bold italic text-[11px] mb-1">※ 教會內部無提供停車位</p><p class="text-[11px]">建議利用「台大新體育館停車場」或校內空間。</p></div>
+                        <div class="p-4 space-y-4">
+                            <div><h4 class="font-bold text-stone-700">捷運</h4><p class="text-sm">「公館站」3號出口 (約5-8分鐘)、「台電大樓站」2號出口 (約10分鐘)</p></div>
+                            <div><h4 class="font-bold text-stone-700">停車建議</h4><p class="text-rose-600 font-bold text-[11px]">※ 教會內部無提供停車位</p><p class="text-sm">建議利用「台大新體育館停車場」或校內空間。</p></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -263,20 +229,19 @@
                     <h3 class="text-2xl">午宴</h3>
                     <p class="artsy-en">WEDDING BANQUET</p>
                 </div>
-                <div class="v-card-body">
+                <div class="v-card-body p-8">
                     <div class="grid md:grid-cols-2 gap-8 mb-4">
-                        <div><p class="text-[10px] text-[#8a7a70] mb-1 tracking-widest uppercase text-[#5a6b5e]">Time</p><p class="text-xl font-bold text-[#5a6b5e]">12:00 入席 | 12:30 開席</p></div>
+                        <div><p class="text-[10px] text-[#8a7a70] mb-1 tracking-widest uppercase">Time</p><p class="text-xl font-bold">12:00 入席 | 12:30 開席</p></div>
                         <div><p class="text-[10px] text-[#8a7a70] mb-1 tracking-widest uppercase">Location</p><p class="text-lg font-bold">新店彭園會館 BC廳</p><p class="text-xs text-[#8a7a70] italic mt-1 leading-relaxed font-medium">新北市新店區北新路三段207之1號1樓</p></div>
                     </div>
-
-                    <div id="btnBanquetTransport" class="toggle-btn banquet" onclick="toggleSection('banquetTransport')">
+                    <div id="btnBanquetTransport" class="toggle-btn bg-[#8da090]/10 text-[#8da090] p-3 rounded-full text-center mt-4 cursor-pointer" onclick="toggleSection('banquetTransport')">
                         <i class="fa-solid fa-car mr-2"></i> 查看午宴交通指引
                     </div>
-
                     <div id="banquetTransport" class="transport-collapse">
-                        <div class="transport-item"><h4 class="font-bold text-[#5a6b5e]">捷運</h4><p>「大坪林站」3號或4號出口 (步程約 3-5 分鐘)</p></div>
-                        <div class="transport-item"><h4 class="font-bold text-[#5a6b5e]">公車</h4><p><span class="bus-list"><strong class="text-stone-700">大坪林站：</strong>綠7-10, 綠13, 15, 棕2, 252, 290, 642-648, 849, 1551, 9009等。<br><strong class="text-stone-700">民權路口：</strong>綠3, 綠8-10, 綠13, 15, 90, 918, 1073, 1080等。</span></p></div>
-                        <div class="transport-item"><h4 class="font-bold text-[#5a6b5e]">停車入口</h4><p class="text-[11px]"><span class="font-bold text-stone-700">汽車：</span>北新路三段 211 巷 (矽谷一期 B3)<br><span class="font-bold text-stone-700">機車：</span>北新路三段 203 巷 (矽谷一期 B2)<br>※ 餐廳提供停車位，依現場公告為準</p></div>
+                        <div class="p-4 space-y-4 text-sm">
+                            <div><h4 class="font-bold">捷運</h4><p>「大坪林站」3號或4號出口 (步程約 3-5 分鐘)</p></div>
+                            <div><h4 class="font-bold">停車入口</h4><p>汽車：北新路三段 211 巷 (矽谷一期 B3)</p></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -288,20 +253,18 @@
         <div class="max-w-4xl mx-auto fade-in">
             <h2 class="text-2xl md:text-3xl font-bold tracking-[0.3em] section-title serif-en uppercase mb-12">Dress Code</h2>
             <p class="text-base md:text-lg mb-4 text-[#4a5a54] font-bold px-4 leading-relaxed">白色，請保留給新娘這份專屬的特別。</p>
-            
             <div class="space-y-1 mb-12 px-4">
-                <p class="text-[#8a7a70] text-sm md:text-base leading-relaxed">色系僅供大家參考，請不要有任何壓力。</p>
-                <p class="text-[#8a7a70] text-sm md:text-base leading-relaxed">最重要的是穿上您最喜歡且自在的顏色，</p>
-                <p class="text-[#8a7a70] text-sm md:text-base leading-relaxed">能見到大家就是我們最開心的事。</p>
+                <p class="text-[#8a7a70] text-sm md:text-base">色系僅供大家參考，請不要有任何壓力。</p>
+                <p class="text-[#8a7a70] text-sm md:text-base">最重要的是穿上您最喜歡且自在的顏色，</p>
+                <p class="text-[#8a7a70] text-sm md:text-base">能見到大家就是我們最開心的事。</p>
             </div>
-            
             <div class="grid grid-cols-3 md:grid-cols-6 gap-6 md:gap-8 max-w-3xl mx-auto px-4">
-                <div class="text-center"><div class="w-12 h-12 md:w-16 md:h-16 rounded-full mx-auto border-4 border-[#f5efe6] shadow-md mb-2" style="background-color: var(--code-pink);"></div><p class="text-[10px] opacity-80 uppercase font-bold artsy-en">Pink</p></div>
-                <div class="text-center"><div class="w-12 h-12 md:w-16 md:h-16 rounded-full mx-auto border-4 border-[#f5efe6] shadow-md mb-2" style="background-color: var(--code-green);"></div><p class="text-[10px] opacity-80 uppercase font-bold artsy-en">Green</p></div>
-                <div class="text-center"><div class="w-12 h-12 md:w-16 md:h-16 rounded-full mx-auto border-4 border-[#f5efe6] shadow-md mb-2" style="background-color: var(--code-purple);"></div><p class="text-[10px] opacity-80 uppercase font-bold artsy-en">Purple</p></div>
-                <div class="text-center"><div class="w-12 h-12 md:w-16 md:h-16 rounded-full mx-auto border-4 border-[#f5efe6] shadow-md mb-2" style="background-color: var(--code-yellow);"></div><p class="text-[10px] opacity-80 uppercase font-bold artsy-en">Yellow</p></div>
-                <div class="text-center"><div class="w-12 h-12 md:w-16 md:h-16 rounded-full mx-auto border-4 border-[#f5efe6] shadow-md mb-2" style="background-color: var(--code-blue);"></div><p class="text-[10px] opacity-80 uppercase font-bold artsy-en">Blue</p></div>
-                <div class="text-center"><div class="w-12 h-12 md:w-16 md:h-16 rounded-full mx-auto border-4 border-[#f5efe6] shadow-md mb-2" style="background-color: var(--code-grey);"></div><p class="text-[10px] opacity-80 uppercase font-bold artsy-en">Grey</p></div>
+                <div class="text-center"><div class="w-12 h-12 md:w-16 md:h-16 rounded-full mx-auto shadow-md mb-2" style="background-color: var(--code-pink);"></div><p class="text-[10px] font-bold artsy-en">Pink</p></div>
+                <div class="text-center"><div class="w-12 h-12 md:w-16 md:h-16 rounded-full mx-auto shadow-md mb-2" style="background-color: var(--code-green);"></div><p class="text-[10px] font-bold artsy-en">Green</p></div>
+                <div class="text-center"><div class="w-12 h-12 md:w-16 md:h-16 rounded-full mx-auto shadow-md mb-2" style="background-color: var(--code-purple);"></div><p class="text-[10px] font-bold artsy-en">Purple</p></div>
+                <div class="text-center"><div class="w-12 h-12 md:w-16 md:h-16 rounded-full mx-auto shadow-md mb-2" style="background-color: var(--code-yellow);"></div><p class="text-[10px] font-bold artsy-en">Yellow</p></div>
+                <div class="text-center"><div class="w-12 h-12 md:w-16 md:h-16 rounded-full mx-auto shadow-md mb-2" style="background-color: var(--code-blue);"></div><p class="text-[10px] font-bold artsy-en">Blue</p></div>
+                <div class="text-center"><div class="w-12 h-12 md:w-16 md:h-16 rounded-full mx-auto shadow-md mb-2" style="background-color: var(--code-grey);"></div><p class="text-[10px] font-bold artsy-en">Grey</p></div>
             </div>
         </div>
     </section>
@@ -313,49 +276,32 @@
             <div id="rsvp-content" class="rsvp-form-container">
                 <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="handleIframeLoad()"></iframe>
                 <form action="https://docs.google.com/forms/d/e/1FAIpQLSfPJ0v3b8kgNaVFXDsGcnDiqikxQz1xUyhEurrD7wCFxjY6tg/formResponse" method="post" target="hidden_iframe" onsubmit="submitted=true;">
-                    <div class="form-group"><label class="form-label">您的姓名 NAME</label><input type="text" name="entry.521368936" class="form-input" placeholder="請輸入姓名" required></div>
-                    <div class="form-group"><label class="form-label">電子信箱 EMAIL</label><input type="email" name="entry.2076367147" class="form-input" placeholder="example@email.com" required></div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">和新人關係 RELATIONSHIP</label>
-                        <select name="entry.1500258154" class="form-select" required>
-                            <option value="" disabled selected>請選擇關係</option>
-                            <option value="🖤 男方 家人親戚">🖤 男方 家人親戚</option>
-                            <option value="🖤 男方 長官同事">🖤 男方 長官同事</option>
-                            <option value="🖤 男方 好友">🖤 男方 好友</option>
-                            <option value="🤍 女方 家人親戚">🤍 女方 家人親戚</option>
-                            <option value="🤍 女方 真理堂弟兄姊妹">🤍 女方 真理堂弟兄姊妹</option>
-                            <option value="🤍 女方 好友">🤍 女方 好友</option>
-                        </select>
+                    <div class="mb-6"><label class="block text-sm font-bold mb-2">您的姓名 NAME</label><input type="text" name="entry.521368936" class="w-full p-3 bg-gray-50 border rounded-lg" placeholder="請輸入姓名" required></div>
+                    <div class="mb-6"><label class="block text-sm font-bold mb-2">電子信箱 EMAIL</label><input type="email" name="entry.2076367147" class="w-full p-3 bg-gray-50 border rounded-lg" placeholder="example@email.com" required></div>
+                    <div class="mb-6"><label class="block text-sm font-bold mb-2">和新人關係 RELATIONSHIP</label><select name="entry.1500258154" class="w-full p-3 bg-gray-50 border rounded-lg" required><option value="" disabled selected>請選擇關係</option><option value="🖤 男方 家人親戚">🖤 男方 家人親戚</option><option value="🖤 男方 長官同事">🖤 男方 長官同事</option><option value="🖤 男方 好友">🖤 男方 好友</option><option value="🤍 女方 家人親戚">🤍 女方 家人親戚</option><option value="🤍 女方 真理堂弟兄姊妹">🤍 女方 真理堂弟兄姊妹</option><option value="🤍 女方 好友">🤍 女方 好友</option></select></div>
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div><label class="block text-sm font-bold mb-2">教堂觀禮人數</label><input type="number" name="entry.875728209" class="w-full p-3 bg-gray-50 border rounded-lg" value="0" min="0" required></div>
+                        <div><label class="block text-sm font-bold mb-2">參加午宴人數</label><input type="number" id="banquet_count" name="entry.577541412" class="w-full p-3 bg-gray-50 border rounded-lg" value="0" min="0" required oninput="checkBanquetFields()"></div>
                     </div>
-                    
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div class="form-group"><label class="form-label">教堂觀禮人數</label><input type="number" name="entry.875728209" class="form-input" placeholder="0" min="0" required></div>
-                        <div class="form-group"><label class="form-label">參加午宴人數</label><input type="number" id="banquet_count" name="entry.577541412" class="form-input" placeholder="0" min="0" required oninput="checkBanquetFields()"></div>
+                    <div id="banquet-only-fields" class="space-y-6">
+                        <div><label class="block text-sm font-bold mb-2">飲食需求 (午宴限定)</label><div class="flex space-x-4"><label><input type="radio" name="entry.1156999561" value="葷食" class="mr-1"> 葷食</label><label><input type="radio" name="entry.1156999561" value="素食" class="mr-1"> 素食</label></div></div>
+                        <div><label class="block text-sm font-bold mb-2">是否需要兒童椅 (午宴限定)</label><div class="flex space-x-4"><label><input type="radio" name="entry.1611971583" value="不需要" class="mr-1"> 不需要</label><label><input type="radio" name="entry.1611971583" value="需要" class="mr-1"> 需要</label></div></div>
                     </div>
-
-                    <div id="banquet-only-fields">
-                        <div class="form-group"><label class="form-label">飲食需求 DIETARY (午宴限定)</label><div class="radio-grid"><label class="radio-card"><input type="radio" name="entry.1156999561" value="葷食" class="mr-2"> 葷食</label><label class="radio-card"><input type="radio" name="entry.1156999561" value="素食" class="mr-2"> 素食</label></div></div>
-                        <div class="form-group"><label class="form-label">是否需要兒童椅 BABY CHAIR (午宴限定)</label><div class="radio-grid"><label class="radio-card"><input type="radio" name="entry.1611971583" value="不需要" class="mr-2"> 不需要</label><label class="radio-card"><input type="radio" name="entry.1611971583" value="需要" class="mr-2"> 需要</label></div></div>
-                    </div>
-
-                    <div class="form-group"><label class="form-label">給我們的祝福語 BLESSINGS</label><textarea name="entry.1065291397" class="form-input" rows="2" placeholder="想對我們說的話..."></textarea></div>
-                    <button type="submit" class="submit-btn shadow-lg">確認送出回函</button>
+                    <div class="mt-6 mb-8 text-left"><label class="block text-sm font-bold mb-2">給我們的祝福語 BLESSINGS</label><textarea name="entry.1065291397" class="w-full p-3 bg-gray-50 border rounded-lg" rows="3" placeholder="想對我們說的話..."></textarea></div>
+                    <button type="submit" class="w-full bg-[#6b7e75] text-white py-4 rounded-full font-bold shadow-lg tracking-widest hover:opacity-90 transition">確認送出回函</button>
                 </form>
             </div>
-            <div id="success-message" style="display: none;">
-                <i class="fa-solid fa-heart text-rose-400 text-5xl mb-6"></i>
-                <h3 class="text-2xl font-bold text-[#4a5a54] mb-2">回函已成功送出</h3>
-                <p class="text-[#8a7a70] font-medium">感謝您的回覆，我們期待與您相見！</p>
+            <div id="success-message" style="display: none;" class="py-20">
+                <i class="fa-solid fa-heart text-rose-400 text-6xl mb-6"></i>
+                <h3 class="text-2xl font-bold mb-2">回函已成功送出</h3>
+                <p>感謝您的回覆，我們期待與您相見！</p>
             </div>
-            <p class="mt-16 text-[#8a7a70] text-xs font-medium tracking-[0.2em]">如有任何疑問，歡迎隨時與我們聯繫</p>
         </div>
     </section>
 
-    <!-- 頁尾 -->
-    <footer class="py-12 md:py-24 bg-white text-center bg-opacity-60 border-t border-stone-200">
+    <footer class="py-12 bg-white text-center border-t">
         <div class="artsy-en text-2xl font-bold text-[#6b7e75]">Johnny & Sarah</div>
-        <p class="serif-en text-[10px] text-[#8a7a70] tracking-[0.4em] font-medium">2026.06.06 | TAIPEI CEREMONY & BANQUET</p>
+        <p class="serif-en text-[10px] text-[#8a7a70] tracking-[0.4em] font-bold mt-2">2026.06.06 | TAIPEI CEREMONY & BANQUET</p>
     </footer>
 
     <script>
@@ -367,19 +313,15 @@
                 document.getElementById('rsvp').scrollIntoView({ behavior: 'smooth' });
             }
         }
-
         function checkBanquetFields() {
             const count = document.getElementById('banquet_count').value;
             const fields = document.getElementById('banquet-only-fields');
-            if (parseInt(count) > 0) {
-                fields.classList.add('visible');
-            } else {
+            if (parseInt(count) > 0) fields.classList.add('visible');
+            else {
                 fields.classList.remove('visible');
-                const radios = fields.querySelectorAll('input[type="radio"]');
-                radios.forEach(r => r.checked = false);
+                fields.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
             }
         }
-
         function toggleSection(id) {
             const el = document.getElementById(id);
             const btn = event.currentTarget;
@@ -389,7 +331,6 @@
                 (id.includes('Church') ? '<i class="fa-solid fa-map-location-dot mr-2"></i> 查看教堂交通指引' : '<i class="fa-solid fa-car mr-2"></i> 查看午宴交通指引') :
                 '<i class="fa-solid fa-chevron-up mr-2"></i> 收合交通資訊';
         }
-
         function updateCountdown() {
             const weddingDate = new Date("June 6, 2026 10:00:00").getTime();
             const now = new Date().getTime();
@@ -405,7 +346,6 @@
         }
         setInterval(updateCountdown, 1000);
         updateCountdown();
-
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
         }, { threshold: 0.1 });
