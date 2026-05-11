@@ -52,10 +52,12 @@
             border-bottom: 1px solid rgba(107, 126, 117, 0.2);
         }
 
+        /* Hero Section */
         .hero-section {
             height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2)), 
-                        url('https://i.postimg.cc/52tt87LB/A251030-33.jpg'); 
+            /* 使用最新的照片 URL，並微調遮罩確保文字清晰 */
+            background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.1)), 
+                        url('https://i.postimg.cc/FHKBm3Xf/IMG-1770175886784.jpg'); 
             background-size: cover;
             background-position: center center; 
             display: flex;
@@ -67,7 +69,8 @@
 
         @media (max-width: 768px) {
             .hero-section {
-                background-position: 50% 25%; 
+                /* 手機版針對人物頭部高度微調焦點 (20%) */
+                background-position: center 20%; 
             }
         }
 
@@ -78,9 +81,10 @@
             background: linear-gradient(transparent, var(--primary-bg));
         }
 
+        /* 加強白色文字的陰影與對比度 */
         .hero-text-box h1, .hero-text-box p, .hero-text-box span {
             color: #ffffff !important;
-            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.9), 0 0 15px rgba(0, 0, 0, 0.5);
+            text-shadow: 0 4px 25px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.3);
             opacity: 1 !important;
         }
 
@@ -113,7 +117,7 @@
             background: #f9f9f9; border-radius: 12px;
         }
         .transport-collapse.open {
-            max-height: 1500px; transition: max-height 0.8s ease-in-out;
+            max-height: 1200px; transition: max-height 0.8s ease-in-out;
             margin-top: 1.5rem; padding: 1.5rem; border: 1px solid #eee;
         }
 
@@ -135,12 +139,13 @@
             max-height: 0; opacity: 0; overflow: hidden; transition: all 0.5s ease-in-out;
         }
         #banquet-only-fields.visible {
-            max-height: 600px; opacity: 1; margin-top: 20px;
+            max-height: 650px; opacity: 1; margin-top: 20px;
         }
 
         @media (max-width: 768px) {
-            .hero-section h1 { font-size: 4.5rem !important; line-height: 1.1; } 
-            .hero-ampersand { font-size: 2.2rem !important; margin: 0 10px; }
+            /* 名字縮小一點點 (從 4.5rem 改為 4rem) */
+            .hero-section h1 { font-size: 4rem !important; line-height: 1.1; } 
+            .hero-ampersand { font-size: 1.8rem !important; margin: 0 8px; }
             .countdown-card { width: 65px; height: 75px; }
             .countdown-num { font-size: 1.6rem; }
             .v-card-body { padding: 1.5rem !important; }
@@ -167,9 +172,9 @@
         <div class="text-white text-center fade-in hero-text-box" id="hero-text">
             <p class="artsy-en text-sm md:text-base mb-8 md:mb-16 tracking-[0.6em] font-light">2026.06.06 SATURDAY</p>
             <div class="flex items-center justify-center mb-10 md:mb-12 px-4">
-                <h1 class="artsy-en text-6xl md:text-9xl">Johnny</h1>
-                <span class="artsy-en text-4xl md:text-7xl italic opacity-90 hero-ampersand">&</span>
-                <h1 class="artsy-en text-6xl md:text-9xl">Sarah</h1>
+                <h1 class="artsy-en text-6xl md:text-8xl">Johnny</h1>
+                <span class="artsy-en text-4xl md:text-6xl italic opacity-90 hero-ampersand">&</span>
+                <h1 class="artsy-en text-6xl md:text-8xl">Sarah</h1>
             </div>
             <p class="text-sm md:text-base tracking-[0.6em] font-medium px-4">蘇郁翔和蔣瑀要結婚了</p>
         </div>
@@ -328,10 +333,9 @@
                                 <label class="block text-xs font-bold mb-2 opacity-70 uppercase">兒童椅 BABY CHAIR</label>
                                 <div class="flex space-x-6"><label class="flex items-center text-sm"><input type="radio" name="entry.1611971583" value="不需要" class="mr-2 accent-[#6b7e75]"> 不需要</label><label class="flex items-center text-sm"><input type="radio" name="entry.1611971583" value="需要" class="mr-2 accent-[#6b7e75]"> 需要</label></div>
                             </div>
-                            <!-- 新增：停車券需求 -->
                             <div>
                                 <label class="block text-xs font-bold mb-2 opacity-70 uppercase">是否需要停車券 PARKING VOUCHER</label>
-                                <div class="flex space-x-6"><label class="flex items-center text-sm"><input type="radio" name="entry.PARKING_VOUCHER_ID" value="不需要" class="mr-2 accent-[#6b7e75]"> 不需要</label><label class="flex items-center text-sm"><input type="radio" name="entry.PARKING_VOUCHER_ID" value="需要" class="mr-2 accent-[#6b7e75]"> 需要</label></div>
+                                <div class="flex space-x-6"><label class="flex items-center text-sm"><input type="radio" name="entry.892601955" value="不需要" class="mr-2 accent-[#6b7e75]"> 不需要</label><label class="flex items-center text-sm"><input type="radio" name="entry.892601955" value="需要" class="mr-2 accent-[#6b7e75]"> 需要</label></div>
                             </div>
                         </div>
                     </div>
