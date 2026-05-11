@@ -52,12 +52,15 @@
             border-bottom: 1px solid rgba(107, 126, 117, 0.2);
         }
 
+        /* Hero Section 優化 */
         .hero-section {
             height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), 
-                        url('https://i.postimg.cc/g0yv2yS9/IMG-5894.jpg'); 
+            /* 調整線性遮罩透明度 (0.4) 以確保文字在亮色照片上更清晰 */
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                        url('https://i.postimg.cc/52tt87LB/A251030-33.jpg'); 
             background-size: cover;
-            background-position: center 30%; 
+            /* 針對這張照片調整位置，確保手機版能看到人物的臉部 (25%) */
+            background-position: center 25%; 
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -74,7 +77,8 @@
 
         .hero-text-box h1, .hero-text-box p, .hero-text-box span {
             color: #ffffff !important;
-            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            /* 加強文字陰影對比度 */
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
             opacity: 1 !important;
         }
 
@@ -149,7 +153,6 @@
         .radio-card { border: 1px solid #ddd; padding: 12px; border-radius: 8px; display: flex; align-items: center; cursor: pointer; transition: all 0.2s; }
         .submit-btn { width: 100%; background-color: var(--morandi-green); color: white !important; padding: 1.2rem; border-radius: 50px; font-weight: 600; letter-spacing: 0.2em; box-shadow: 0 10px 25px rgba(107, 126, 117, 0.3); }
 
-        /* 午宴限定欄位容器 */
         #banquet-only-fields {
             max-height: 0;
             overflow: hidden;
@@ -187,7 +190,7 @@
         <a href="#rsvp" class="md:hidden text-[#6b7e75] text-lg"><i class="fa-solid fa-envelope"></i></a>
     </nav>
 
-    <!-- 封面 -->
+    <!-- 封面 (已更換主圖並優化手機裁切) -->
     <header class="hero-section">
         <div class="text-white text-center fade-in hero-text-box" id="hero-text">
             <p class="artsy-en text-sm md:text-base mb-10 md:mb-16 tracking-[0.6em] font-light">2026.06.06 SATURDAY</p>
